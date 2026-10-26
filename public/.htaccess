@@ -1,0 +1,74 @@
+# ---------------------------------------------------------------
+# Basics
+# ---------------------------------------------------------------
+DirectoryIndex index.php index.html
+Options -Indexes
+AddDefaultCharset UTF-8
+ErrorDocument 404 /404.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirect to https://www.bez.dk in a single hop
+  # (covers both http:// and missing www).
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^bez\.dk$ [NC]
+  RewriteRule ^(.*)$ https://www.bez.dk/$1 [L,R=301]
+
+  # Block hidden files such as .git or .env (but allow .well-known,
+  # which is used for SSL certificate validation).
+  RewriteRule (^|/)\.(?!well-known/) - [F]
+
+  # Old Vue site routes -> new pages
+  RewriteRule ^om/?$ /about [L,R=301]
+
+  # --- Clean URLs (no ".php" in the address bar) ---
+
+  # /index.php -> /
+  RewriteCond %{THE_REQUEST} ^GET\s/(.*/)?index(\.php)?[\s?] [NC]
+  RewriteRule ^ /%1 [L,R=301]
+
+  # /about.php -> /about (GET only, so form posts keep working)
+  RewriteCond %{THE_REQUEST} ^GET\s/(.+)\.php[\s?] [NC]
+  RewriteRule ^ /%1 [L,R=301]
+
+  # /about/ -> /about
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # Serve /about from about.php behind the scenes
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.php -f
+  RewriteRule ^(.+)$ $1.php [L]
+</IfModule>
+
+# ---------------------------------------------------------------
+# Security headers
+# ---------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ---------------------------------------------------------------
+# Compression
+# ---------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# ---------------------------------------------------------------
+# Browser caching for static files
+# ---------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css               "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType image/png              "access plus 1 month"
+  ExpiresByType image/jpeg             "access plus 1 month"
+  ExpiresByType image/svg+xml          "access plus 1 month"
+  ExpiresByType image/x-icon           "access plus 1 year"
+</IfModule>
