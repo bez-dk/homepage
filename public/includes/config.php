@@ -1,9 +1,10 @@
 <?php
 // Site-wide settings. Edit these to make the site your own.
-// Texts shown on the pages are in includes/lang/da.php and en.php.
+// Page texts are in includes/lang/da.php and en.php,
+// tools and guides are listed in includes/content.php.
 
 $site = [
-    'name' => 'Bez',
+    'name' => 'BEZ.dk',
 
     // Where contact form messages are sent.
     'contact_to'   => 'you@example.com',
@@ -12,11 +13,13 @@ $site = [
     'contact_from' => 'noreply@yourdomain.com',
 ];
 
-// Navigation: URL => text key (see the language files)
+// Main navigation: URL => text key (see the language files)
 $nav = [
-    '/'        => 'nav.home',
-    '/about'   => 'nav.about',
-    '/contact' => 'nav.contact',
+    '/'         => 'nav.home',
+    '/tools'    => 'nav.tools',
+    '/guides'   => 'nav.guides',
+    '/projects' => 'nav.projects',
+    '/about'    => 'nav.about',
 ];
 
 // Small helper to safely print text in HTML.
@@ -26,3 +29,5 @@ function e(string $text): string
 }
 
 require_once __DIR__ . '/i18n.php';
+require_once __DIR__ . '/icons.php';
+require_once __DIR__ . '/content.php';

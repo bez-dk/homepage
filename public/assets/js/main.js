@@ -30,3 +30,15 @@ document.addEventListener('keydown', (event) => {
         });
     }
 });
+
+// Light / dark theme toggle (the starting theme is set in the page <head>)
+const themeToggle = document.querySelector('.theme-toggle');
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const root = document.documentElement;
+        const theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+    });
+}

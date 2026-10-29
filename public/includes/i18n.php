@@ -42,7 +42,7 @@ function detect_language(): string
     return DEFAULT_LANGUAGE;
 }
 
-// Translate a text key, e.g. t('nav.home') or t('home.heading', ['{name}' => 'Bez']).
+// Translate a text key, e.g. t('nav.home') or t('notfound.title').
 function t(string $key, array $vars = []): string
 {
     global $strings;

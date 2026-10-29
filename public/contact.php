@@ -4,7 +4,13 @@ $pageTitle = t('contact.title');
 require __DIR__ . '/includes/header.php';
 ?>
 
-<h1><?= e(t('contact.title')) ?></h1>
+<div class="container">
+<header class="page-header">
+    <h1><?= e(t('contact.title')) ?></h1>
+    <p class="lead"><?= e(t('contact.lead')) ?></p>
+</header>
+
+<div class="card form-card">
 
 <?php if ($sent): ?>
     <p class="notice success"><?= e(t('contact.sent')) ?></p>
@@ -34,7 +40,9 @@ require __DIR__ . '/includes/header.php';
     <div class="hp" aria-hidden="true">
         <label><?= e(t('contact.honeypot')) ?> <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
     </div>
-    <button type="submit" class="button"><?= e(t('contact.send')) ?></button>
+    <button type="submit" class="button button-primary"><?= e(t('contact.send')) ?></button>
 </form>
+</div>
+</div>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

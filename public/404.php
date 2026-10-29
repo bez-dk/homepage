@@ -5,10 +5,15 @@ $pageTitle = t('notfound.title');
 require __DIR__ . '/includes/header.php';
 ?>
 
-<section class="hero">
-    <h1><?= e(t('notfound.title')) ?></h1>
-    <p><?= e(t('notfound.text')) ?></p>
-    <a href="/" class="button"><?= e(t('notfound.back')) ?></a>
+<section class="hero hero-small">
+    <div class="container">
+        <p class="eyebrow">404</p>
+        <h1 class="hero-title"><?= e(t('notfound.title')) ?></h1>
+        <p class="hero-lead"><?= e(t('notfound.text')) ?></p>
+        <div class="hero-actions">
+            <a href="/" class="button button-primary"><?= e(t('notfound.back')) ?></a>
+        </div>
+    </div>
 </section>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
