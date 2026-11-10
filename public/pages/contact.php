@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . '/includes/contact-handler.php';
+require __DIR__ . '/../includes/contact-handler.php';
 $pageTitle = t('contact.title');
-require __DIR__ . '/includes/header.php';
+require __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="container">
@@ -45,4 +45,4 @@ require __DIR__ . '/includes/header.php';
 </div>
 </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../includes/footer.php'; ?>

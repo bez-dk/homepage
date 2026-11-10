@@ -4,7 +4,7 @@
 DirectoryIndex index.php index.html
 Options -Indexes
 AddDefaultCharset UTF-8
-ErrorDocument 404 /404.php
+ErrorDocument 404 /pages/404.php
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -24,6 +24,13 @@ ErrorDocument 404 /404.php
   RewriteRule ^om/?$ /about [L,R=301]
 
   # --- Clean URLs (no ".php" in the address bar) ---
+  # All pages live in the pages/ folder: /about is served from
+  # pages/about.php, /tools/ip-subnet-calculator from
+  # pages/tools/ip-subnet-calculator.php.
+
+  # /pages/about -> /about (the folder is never shown in the address)
+  RewriteCond %{THE_REQUEST} ^GET\s/pages/(\S*)\s [NC]
+  RewriteRule ^ /%1 [L,R=301]
 
   # /index.php -> /
   RewriteCond %{THE_REQUEST} ^GET\s/(.*/)?index(\.php)?[\s?] [NC]
@@ -37,11 +44,13 @@ ErrorDocument 404 /404.php
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ /$1 [L,R=301]
 
-  # Serve /about from about.php behind the scenes
+  # Serve / from pages/index.php behind the scenes
+  RewriteRule ^$ pages/index.php [L]
+
+  # Serve /about from pages/about.php behind the scenes
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}.php -f
-  RewriteRule ^(.+)$ $1.php [L]
+  RewriteCond %{DOCUMENT_ROOT}/pages/$1.php -f
+  RewriteRule ^(.+)$ pages/$1.php [L]
 </IfModule>
 
 # ---------------------------------------------------------------

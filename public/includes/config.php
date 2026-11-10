@@ -7,10 +7,10 @@ $site = [
     'name' => 'BEZ.dk',
 
     // Where contact form messages are sent.
-    'contact_to'   => 'you@example.com',
+    'contact_to'   => 'contact@bez.dk',
     // one.com requires the sender to be an address on your own domain,
     // otherwise mail may be rejected or marked as spam.
-    'contact_from' => 'noreply@yourdomain.com',
+    'contact_from' => 'noreply@bez.dk',
 ];
 
 // Main navigation: URL => text key (see the language files)

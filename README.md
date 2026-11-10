@@ -7,18 +7,22 @@ A small PHP site with no frameworks or build step, made for one.com hosting.
 
 ```
 public/                    Everything inside this folder goes on the web server
-  index.php                Home page (hero, tool tiles, explore cards)
-  tools.php                All tools, grouped by category
-  guides.php               Guide categories
-  projects.php             Projects
-  about.php                About BEZ.dk
-  contact.php              Contact form
-  404.php                  "Page not found" page
+  pages/                   All pages; pages/about.php is served as /about
+    index.php              Home page (hero, tool tiles, explore cards)
+    tools.php              All tools, grouped by category
+    tools/                 One page per tool, served as /tools/<name>
+      ip-subnet-calculator.php   IPv4 subnet calculator (form + result)
+    guides.php             Guide categories
+    projects.php           Projects
+    about.php              About BEZ.dk
+    contact.php            Contact form
+    404.php                "Page not found" page
   .htaccess                HTTPS + www redirect, clean URLs, security headers, caching
   robots.txt
   favicon.ico, apple-touch-icon.png   Browser and phone home-screen icons
   assets/css/style.css     Styling with light and dark theme
   assets/js/main.js        Mobile menu, language dropdown, theme toggle
+  assets/js/tools/         The calculations for each tool (run in the browser)
   assets/img/logo.svg      The "B" logo (also used as favicon)
   assets/img/flags/        Language flags
   includes/                Shared code, blocked from the web by .htaccess
@@ -39,6 +43,8 @@ README.md, LICENSE         Repo files only, not uploaded
 
 Tools and guides are listed in `public/includes/content.php`. Until an entry has a `'url'`, it is shown with a "Kommer snart / Coming soon" badge. Add `'url' => '/tools/...'` when the page exists and it becomes a link.
 
+A tool page lives in `public/pages/tools/<slug>.php` and its script in `public/assets/js/tools/<slug>.js`. Use `public/pages/tools/ip-subnet-calculator.php` as the template: it takes its title and intro from `content.php` via `find_tool()`, renders the form and empty result rows with texts from the language files, and the script fills in the results.
+
 ## Getting started
 
 1. Open `public/includes/config.php` and set your site name and email addresses.
@@ -47,7 +53,7 @@ Tools and guides are listed in `public/includes/content.php`. Until an entry has
 
 ### Adding a new page
 
-Copy `public/about.php` to e.g. `public/blog.php`, change `$pageTitle` and the content, and add `'/blog' => 'nav.blog'` to `$nav` in `public/includes/config.php`. Then add the new text keys (e.g. `'nav.blog' => 'Blog'`) to **both** language files.
+Copy `public/pages/about.php` to e.g. `public/pages/blog.php`, change `$pageTitle` and the content, and add `'/blog' => 'nav.blog'` to `$nav` in `public/includes/config.php`. Then add the new text keys (e.g. `'nav.blog' => 'Blog'`) to **both** language files.
 
 Pages are reached without `.php` in the address, e.g. `https://www.bez.dk/projects`. Old `.php` links are redirected automatically.
 

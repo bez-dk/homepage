@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/includes/config.php';
-require __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/../includes/config.php';
+require __DIR__ . '/../includes/header.php';
 
 $explore = [
     [
@@ -80,4 +80,4 @@ $explore = [
     </div>
 </section>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../includes/footer.php'; ?>

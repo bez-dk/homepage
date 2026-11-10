@@ -18,6 +18,7 @@ $toolCategories = [
 $tools = [
     [
         'slug'     => 'ip-subnet-calculator',
+        'url'      => '/tools/ip-subnet-calculator',
         'category' => 'it',
         'icon'     => 'network',
         'color'    => 'teal',
@@ -136,6 +137,18 @@ $guideCategories = [
         ],
     ],
 ];
+
+// Look up a tool by its slug (used by the tool pages for their title and text).
+function find_tool(string $slug): array
+{
+    global $tools;
+    foreach ($tools as $tool) {
+        if ($tool['slug'] === $slug) {
+            return $tool;
+        }
+    }
+    throw new InvalidArgumentException("Unknown tool: $slug");
+}
 
 // A colored tile for a tool (used on the home page and the tools page).
 function tool_tile(array $tool, bool $showText = false): string

@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/../includes/config.php';
 http_response_code(404);
 $pageTitle = t('notfound.title');
-require __DIR__ . '/includes/header.php';
+require __DIR__ . '/../includes/header.php';
 ?>
 
 <section class="hero hero-small">
@@ -16,4 +16,4 @@ require __DIR__ . '/includes/header.php';
     </div>
 </section>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../includes/footer.php'; ?>

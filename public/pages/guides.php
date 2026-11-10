@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/../includes/config.php';
 $pageTitle = t('guides.title');
-require __DIR__ . '/includes/header.php';
+require __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="container">
@@ -32,4 +32,4 @@ require __DIR__ . '/includes/header.php';
     </div>
 </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../includes/footer.php'; ?>

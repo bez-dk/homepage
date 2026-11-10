@@ -11,10 +11,12 @@ if ($path !== '/' && is_file($root . $path) && !str_ends_with($path, '.php')) {
     return false;
 }
 
-$file = $path === '/' ? '/index.php' : $path . '.php';
+// Pages live in public/pages: /about -> pages/about.php
+$pages = $root . '/pages';
+$file  = $path === '/' ? '/index.php' : $path . '.php';
 
-if (!str_starts_with($path, '/includes') && is_file($root . $file)) {
-    require $root . $file;
+if (!str_contains($path, '..') && is_file($pages . $file)) {
+    require $pages . $file;
 } else {
-    require $root . '/404.php';
+    require $pages . '/404.php';
 }

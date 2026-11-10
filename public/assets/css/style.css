@@ -652,14 +652,17 @@ a.tile:hover {
     display: grid;
     gap: 1.1rem;
 }
-.contact-form label {
+.contact-form label,
+.tool-form label {
     display: grid;
     gap: 0.35rem;
     font-weight: 600;
     font-size: 0.95rem;
 }
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.tool-form input,
+.tool-form select {
     width: 100%;
     font: inherit;
     font-size: 1rem; /* 16px+ stops iOS from zooming in on focus */
@@ -673,7 +676,9 @@ a.tile:hover {
 }
 .contact-form textarea { resize: vertical; min-height: 9rem; }
 .contact-form input:focus,
-.contact-form textarea:focus {
+.contact-form textarea:focus,
+.tool-form input:focus,
+.tool-form select:focus {
     border-color: var(--accent);
     outline: 0;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
@@ -696,6 +701,75 @@ a.tile:hover {
 .notice p { margin: 0; }
 .notice.success { background-color: var(--success-bg); color: var(--success-text); }
 .notice.error { background-color: var(--error-bg); color: var(--error-text); }
+
+/* ---------------------------------------------------------------
+   Tool pages (e.g. tools/ip-subnet-calculator.php)
+   --------------------------------------------------------------- */
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 1.5rem;
+    color: var(--subtle);
+    font-size: 0.9rem;
+}
+.page-header-tool { padding-top: clamp(1rem, 3vw, 1.5rem); }
+
+/* Form on the left, result on the right (stacked on small screens) */
+.tool-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 3rem;
+}
+@media (max-width: 859px) {
+    .tool-layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+.tool-form {
+    display: grid;
+    gap: 1.1rem;
+    margin-top: 1rem;
+}
+.tool-form input { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+.tool-form button { justify-self: start; }
+@media (max-width: 575px) {
+    .tool-form button { justify-self: stretch; }
+}
+
+.form-hint {
+    color: var(--subtle);
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.result-list {
+    display: grid;
+    margin: 1rem 0 1.5rem;
+}
+.result-list > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.result-list > div:last-child { border-bottom: 0; }
+.result-list dt { color: var(--muted); }
+.result-list dd {
+    margin: 0;
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+.result-binary dd { font-size: 0.9rem; }
+.bits-network { color: var(--accent); }
+[data-theme="dark"] .bits-network { color: var(--link); }
+
+.tool-info h2 { font-size: 1.35rem; }
+.tool-info p { color: var(--muted); }
 
 /* ---------------------------------------------------------------
    Footer
