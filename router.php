@@ -15,7 +15,11 @@ if ($path !== '/' && is_file($root . $path) && !str_ends_with($path, '.php')) {
 $pages = $root . '/pages';
 $file  = $path === '/' ? '/index.php' : $path . '.php';
 
-if (!str_contains($path, '..') && is_file($pages . $file)) {
+// A single recipe: /recipes/aeblekage -> pages/recipe.php?slug=aeblekage
+if (preg_match('#^/recipes/([a-z0-9-]+)$#', $path, $match)) {
+    $_GET['slug'] = $match[1];
+    require $pages . '/recipe.php';
+} elseif (!str_contains($path, '..') && is_file($pages . $file)) {
     require $pages . $file;
 } else {
     require $pages . '/404.php';

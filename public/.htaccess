@@ -44,6 +44,9 @@ ErrorDocument 404 /pages/404.php
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ /$1 [L,R=301]
 
+  # A single recipe: /recipes/aeblekage is served by pages/recipe.php
+  RewriteRule ^recipes/([a-z0-9-]+)$ pages/recipe.php?slug=$1 [L,QSA]
+
   # Serve / from pages/index.php behind the scenes
   RewriteRule ^$ pages/index.php [L]
 
@@ -78,6 +81,7 @@ ErrorDocument 404 /pages/404.php
   ExpiresByType application/javascript "access plus 1 week"
   ExpiresByType image/png              "access plus 1 month"
   ExpiresByType image/jpeg             "access plus 1 month"
+  ExpiresByType image/webp             "access plus 1 month"
   ExpiresByType image/svg+xml          "access plus 1 month"
   ExpiresByType image/x-icon           "access plus 1 year"
 </IfModule>

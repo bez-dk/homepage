@@ -18,6 +18,9 @@ function is_active(string $url, string $currentPath): bool
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= e(t('site.description')) ?>">
     <title><?= e($pageTitle) ?></title>
+    <?php if (!empty($noindex)): ?>
+        <meta name="robots" content="noindex">
+    <?php endif; ?>
     <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">

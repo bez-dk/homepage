@@ -1,0 +1,8 @@
+# Uploaded files: only images may be fetched, and nothing in here is ever run as code.
+Options -Indexes
+RemoveHandler .php .phtml .phar .php3 .php4 .php5 .php7 .php8 .pl .py .cgi
+RemoveType .php .phtml .phar
+Require all denied
+<FilesMatch "\.(jpe?g|png|webp)$">
+    Require all granted
+</FilesMatch>

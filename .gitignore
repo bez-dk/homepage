@@ -1,2 +1,8 @@
 # Old site, kept locally for reference only (contains personal data)
 /archive/
+
+# Database password and admin password hash (copy db-config.example.php)
+/public/includes/db-config.php
+
+# Photos uploaded through the recipe admin (they live on the server)
+/public/uploads/recipes/

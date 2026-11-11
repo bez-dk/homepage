@@ -46,5 +46,5 @@ function detect_language(): string
 function t(string $key, array $vars = []): string
 {
     global $strings;
-    return strtr($strings[$key] ?? $key, $vars);
+    return strtr($strings[$key] ?? $key, array_map('strval', $vars));
 }

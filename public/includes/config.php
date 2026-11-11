@@ -18,6 +18,7 @@ $nav = [
     '/'         => 'nav.home',
     '/tools'    => 'nav.tools',
     '/guides'   => 'nav.guides',
+    '/recipes'  => 'nav.recipes',
     '/projects' => 'nav.projects',
     '/about'    => 'nav.about',
 ];

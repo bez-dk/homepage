@@ -12,6 +12,7 @@
                 <h2><?= e(t('footer.content')) ?></h2>
                 <a href="/tools"><?= e(t('nav.tools')) ?></a>
                 <a href="/guides"><?= e(t('nav.guides')) ?></a>
+                <a href="/recipes"><?= e(t('nav.recipes')) ?></a>
                 <a href="/projects"><?= e(t('nav.projects')) ?></a>
             </nav>
             <nav class="footer-links" aria-label="<?= e(t('footer.site')) ?>">

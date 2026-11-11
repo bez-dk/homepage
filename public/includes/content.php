@@ -27,6 +27,7 @@ $tools = [
     ],
     [
         'slug'     => 'voltage-drop-calculator',
+        'url'      => '/tools/voltage-drop-calculator',
         'category' => 'engineering',
         'icon'     => 'zap',
         'color'    => 'orange',
