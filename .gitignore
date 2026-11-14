@@ -9,3 +9,7 @@
 
 # Local Docker settings (copy .env.example)
 /.env
+
+# Project-specific IDE settings
+/.idea/
+*code-workspace
