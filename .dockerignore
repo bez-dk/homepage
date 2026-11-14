@@ -1,0 +1,6 @@
+.git
+archive
+scripts
+public/includes/db-config.php
+public/uploads/recipes
+.env

@@ -6,3 +6,6 @@
 
 # Photos uploaded through the recipe admin (they live on the server)
 /public/uploads/recipes/
+
+# Local Docker settings (copy .env.example)
+/.env

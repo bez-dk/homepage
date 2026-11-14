@@ -47,6 +47,7 @@ public/                    Everything inside this folder goes on the web server
     recipes.php            Reading, searching, showing and saving recipes
 scripts/make_icons.py      Regenerates the PNG/ICO icons from the logo (not uploaded)
 router.php                 Makes clean URLs work when previewing locally (not uploaded)
+Dockerfile, docker-compose.yml, docker/   Local Docker setup (not uploaded)
 archive/                   Old site and design ideas, local only (ignored by git)
 README.md, LICENSE         Repo files only, not uploaded
 ```
@@ -97,7 +98,28 @@ Uploaded photos live in `public/uploads/recipes/` on the server and are not in g
 
 The site is in Danish and English. Visitors get the language their browser prefers (Danish if it's neither), and can switch with the language dropdown (🌐) in the top bar. The choice is remembered in a cookie. Any page can be opened in a specific language by adding `?lang=da` or `?lang=en` to the address.
 
-## Running locally (optional)
+## Running locally with Docker
+
+With Docker Desktop installed, run this in the project folder:
+
+```
+docker compose up -d --build
+```
+
+| What | Where |
+| --- | --- |
+| The site | http://localhost:8080 |
+| Mail sent by the contact form (Mailpit) | http://localhost:8025 |
+| MariaDB database | `localhost:3306`, user/password `homepage` |
+
+- It runs PHP 8.3 with Apache, so `.htaccess` (clean URLs, blocked `includes/`, `uploads/` rules) works like on one.com. The redirect to `https://www.bez.dk` is skipped locally.
+- `public/` is mounted live: edit a file and reload the page, no rebuild needed. Rebuild only after changing `Dockerfile` or `docker/`.
+- The recipe tables are created automatically. To log in at `/admin`, choose a password there, copy `.env.example` to `.env`, paste the hash into `ADMIN_PASSWORD_HASH` (keep the single quotes) and run `docker compose up -d`.
+- Inside Docker, `docker/db-config.php` is used instead of `public/includes/db-config.php`, so your real one.com details are never used or changed.
+- The database is kept in a Docker volume. `docker compose down` stops everything; `docker compose down -v` also deletes the database. Uploaded photos land in `public/uploads/recipes/` as usual.
+- Ports and passwords can be changed in `.env` (see `.env.example`).
+
+## Running locally without Docker (optional)
 
 If PHP is installed (`winget install PHP.PHP`), run this in the project folder:
 

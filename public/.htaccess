@@ -11,10 +11,13 @@ ErrorDocument 404 /pages/404.php
   RewriteBase /
 
   # Redirect to https://www.bez.dk in a single hop
-  # (covers both http:// and missing www).
-  RewriteCond %{HTTPS} !=on [OR]
-  RewriteCond %{HTTP_HOST} ^bez\.dk$ [NC]
-  RewriteRule ^(.*)$ https://www.bez.dk/$1 [L,R=301]
+  # (covers both http:// and missing www). Skipped in the local Docker
+  # copy, which defines LOCAL_DEV (see docker/apache.conf).
+  <IfDefine !LOCAL_DEV>
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP_HOST} ^bez\.dk$ [NC]
+    RewriteRule ^(.*)$ https://www.bez.dk/$1 [L,R=301]
+  </IfDefine>
 
   # Block hidden files such as .git or .env (but allow .well-known,
   # which is used for SSL certificate validation).
